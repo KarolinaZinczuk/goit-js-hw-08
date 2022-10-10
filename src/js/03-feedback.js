@@ -3,8 +3,7 @@ const input = document.querySelector(`input`);
 const textarea = document.querySelector('textarea');
 // const submitBtn = document.querySelector('button');
 
-var throttle = require('lodash.throttle');
-form.addEventListener('input', throttle(dateType, 500));
+const throttle = require('lodash.throttle');
 
 const dateType = () => {
     const type = { 
@@ -12,6 +11,8 @@ const dateType = () => {
         message: textarea.value };
     localStorage.setItem('feedback-form-state', JSON.stringify(type));
     };
+
+form.addEventListener('input', throttle(dateType, 500));
 
  try {
     const data = JSON.parse(localStorage.getItem('feedback-form-state'));
@@ -21,7 +22,6 @@ const dateType = () => {
     console.log(error.name); 
     console.log(error.message);
  }
-
 
 form.addEventListener('submit', event => {
     event.preventDefault();
